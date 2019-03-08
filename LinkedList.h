@@ -28,7 +28,7 @@ class LinkedList
         Node* getNext();
         
     private:
-        Node* first;
+        Node* head;
         int length;
 };
 

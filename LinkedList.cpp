@@ -6,7 +6,7 @@
 
 // constuctor with member initializtion list (length, first object)
 LinkedList::LinkedList(size_t len, Node* first)
-    : length(len), first(first)
+    : length(len), head(first)
 {
     // empty
 }
@@ -23,7 +23,7 @@ int LinkedList::getLength()
 
 Node* LinkedList::getNext()
 {
-    return first;
+    return head;
 }
 
 // eventually have append function open to multiple data types
@@ -34,22 +34,22 @@ void LinkedList::append(int data)
     // set data properties
     nodeObj->data = data;
     // next increment
-    nodeObj->next = first;
+    nodeObj->next = head;
 
     // set latest item
-    first = nodeObj;
+    head = nodeObj;
     // increment list length
     length++;
 }
 
 void LinkedList::display()
 {
-    Node* firstNode = first;
+    Node* firstNode = head;
     
     int i = 1;
     do
     {
-        cout << i << ": " << first->data << endl;
+        cout << i << ": " << head->data << endl;
         i++;
     } while (i < length); // LIST_LEN (100) as set by nodes created in main loop
 }
