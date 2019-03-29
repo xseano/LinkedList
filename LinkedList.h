@@ -5,31 +5,43 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
-#define LIST_LEN 100
-
 #include <iostream>
 using namespace std;
 
-struct Node
-{
-    int data;
-    Node *next;
-};
-
+template <typename T>
 class LinkedList
 {
-    public:
-        LinkedList(size_t len, Node* first);
-        ~LinkedList();
-
-        void append(int data);
-        void display();
-        int getLength();
-        Node* getNext();
+	struct Node
+	{
+        // Data and next position
+		T data;
+		Node *next;
         
-    private:
-        Node* head;
-        int length;
+        // initialization list
+		Node(T d, Node *n = 0):data(d), next(n) {}
+	};
+	
+    Node *head;
+
+public:
+	LinkedList(Node *h = 0);
+	~LinkedList();
+
+    // add obj, append to head, prepend to tail
+	void addNode(Node *obj, T data);
+	void addToBack(T data);
+	void addToFront(T data);
+
+    // pop head / tail nodes
+    T removeFromBack();
+	T removeFromFront();
+    void removeNode(Node *obj);
+
+    // display list
+	void display();
+	
+    // searching for object position within list
+    Node *search(T data);
 };
 
 #endif

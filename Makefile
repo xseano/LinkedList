@@ -2,10 +2,15 @@
 # oberoi, sean
 # ssoberoi
 
-linkedlist: LinkedList.o Main.o
+linkedList: LinkedList.o Main.o
 	rm -rf linkedList
-	g++ LinkedList.o Main.o -o ./linkedList
-	make clean
+	g++ -v -I LinkedList.o Main.o -o ./linkedList
+
+LinkedList.o: LinkedList.cpp LinkedList.h
+	g++ -c LinkedList.cpp
+
+Main.o: Main.cpp LinkedList.h
+	g++ -c Main.cpp
 
 clean:
 	@rm -f $(PROGRAMS) *.o core
