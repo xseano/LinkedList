@@ -18,21 +18,21 @@ int main()
 	LL->add(30);
 	LL->add(40);
 	LL->add(50);
-	LL->display();
+	LL->displayList();
 
 	cout << "Adding 60 to the front of the list!";
 
 	LL->prepend(60);
-	LL->display();
+	LL->displayList();
 
 	cout << "Removing the last node...";
 
 	LL->pop();
-	LL->display();
+	LL->displayList();
 
 	cout << "Removing the first node...";
 	LL->shift();
-	LL->display();
+	LL->displayList();
 
 	cout << "Does 60 still exist in the list?" << endl;
 
@@ -40,15 +40,17 @@ int main()
 	{
 		cout << "60 doesn't exist, let's add it again!";
 		LL->add(60);
-		LL->display();
+		LL->displayList();
 	}
 
 	cout << "Lets add 40 to the front of the list...";
 	LL->prepend(40);
-	LL->display();
+	LL->displayList();
 
 	cout << "Wait.. how many times is 40 in the list though?" << endl;
 	cout << "Looks like 40 has " <<  LL->getFrequencyOf(40) << " occurences in the list!" << endl;
+
+	std::vector<int> list = LL->toVector();
 
 	return 0;
 }

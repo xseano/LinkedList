@@ -6,6 +6,7 @@
 #define LINKED_LIST_H
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 template <typename T>
@@ -29,7 +30,7 @@ public:
 
 	void clear(); // clear the data structure 
 
-	void display(); 
+	void displayList(); 
 
 	int getCurrentSize(); // size or length of the data structure
 	bool isEmpty(); // is the data structure empty
@@ -42,7 +43,7 @@ public:
 
 	bool contains(T data); // does the data structure have this data
 	int getFrequencyOf(T data); // how many times is the data in the data structure
-	//vector<T data> toVector() const; // return data in a vector (e.g. to print out)
+	vector<T> toVector(); // return data in a vector (e.g. to print out)
 };
 
 #include "LinkedList.cpp"

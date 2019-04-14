@@ -212,7 +212,29 @@ int LinkedList<T>::getFrequencyOf(T data)
 }
 
 template <typename T>
-void LinkedList<T>::display()
+std::vector<T> LinkedList<T>::toVector()
+{
+	std::vector<T> vec;
+	
+	if(!head)
+    {
+		vec.push_back(0);
+        return vec;
+    }
+
+	Node *curr = head;
+
+	while(curr)
+    {
+		vec.push_back(curr->data);
+		curr = curr->next;
+	}
+
+	return vec;
+}
+
+template <typename T>
+void LinkedList<T>::displayList()
 {
 	if(!head)
     {
