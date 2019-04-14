@@ -5,7 +5,7 @@
 #include "LinkedList.h"
 
 template <typename T>
-LinkedList<T>::LinkedList(Node *h)
+LinkedList<T>::LinkedList(Node* h)
     : head(h)
 {
     //
@@ -14,244 +14,244 @@ LinkedList<T>::LinkedList(Node *h)
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-	clear();
+    clear();
 }
 
 template <typename T>
 bool LinkedList<T>::isEmpty()
 {
-	if (!head)
+    if (!head)
 	{
-		return true;
-	}
+        return true;
+    }
 
-	return false;
+    return false;
 }
 
 template <typename T>
 int LinkedList<T>::getCurrentSize()
 {
-	int counter = 0;
+    int counter = 0;
 
-	if(!head)
-    {
+    if (!head)
+	{
         return 0;
     }
 
-	Node *curr = head;
-	while(curr)
-    {
-		counter++;
-		curr = curr->next;
-	}
+    Node* curr = head;
+    while (curr)
+	{
+        counter++;
+        curr = curr->next;
+    }
 
-	return counter;
+    return counter;
 }
 
 template <typename T>
 void LinkedList<T>::clear()
 {
-	Node *temp;
-	while(head)
-    {
-		temp = head;
-		head = head->next;
+    Node* temp;
+    while (head)
+	{
+        temp = head;
+        head = head->next;
         // destroy the head of the list, incrementing until no nodes left
-		delete temp;
-	}
+        delete temp;
+    }
 }
 
 template <typename T>
-void LinkedList<T>::add(T data) 
+void LinkedList<T>::add(T data)
 {
-	Node *newNode = new Node(data);
+    Node* newNode = new Node(data);
 
-	if(!head)
-    {
-		// no nodes in list, create head
-		head = newNode;
-		return;
-	}
+    if (!head)
+	{
+        // no nodes in list, create head
+        head = newNode;
+        return;
+    }
 
-	Node *curr = head;
+    Node* curr = head;
 
-	while(curr)
-    {
-		if(!curr->next)
-        {
-			curr->next = newNode;
-			return;
-		}
-		curr = curr->next;
-	}
+    while (curr)
+	{
+        if (!curr->next)
+		{
+            curr->next = newNode;
+            return;
+        }
+        curr = curr->next;
+    }
 }
 
 template <typename T>
 void LinkedList<T>::prepend(T data)
 {
-	Node *newNode = new Node(data);
+    Node* newNode = new Node(data);
 
-	if(!head)
-    {
-		head = newNode;
-		return;
-	}
+    if (!head)
+	{
+        head = newNode;
+        return;
+    }
 
-	newNode->next = head;
-	head = newNode;
+    newNode->next = head;
+    head = newNode;
 
-	return;
+    return;
 }
 
 template <typename T>
-void LinkedList<T>::pop() 
+void LinkedList<T>::pop()
 {
-	Node *curr = head;
+    Node* curr = head;
 
-	while(curr)
-    {
-		if(!curr->next)
-        {
-			delete curr;
-			
+    while (curr)
+	{
+        if (!curr->next)
+		{
+            delete curr;
+
             head = NULL;
-			return;
-		}
+            return;
+        }
 
-		else
-        {
-			if(!curr->next->next)
-            {
-				curr->next = NULL;
-                
-				delete curr->next;
-				return;
-			}
-		}
+        else
+		{
+            if (!curr->next->next)
+			{
+                curr->next = NULL;
 
-		curr = curr->next;
-	}
+                delete curr->next;
+                return;
+            }
+        }
 
-	return;
+        curr = curr->next;
+    }
+
+    return;
 }
 
 template <typename T>
 void LinkedList<T>::shift()
 {
-	if(!head)
-    {
+    if (!head)
+	{
         return;
     }
 
-	Node *temp = head;
+    Node* temp = head;
 
-	if(head->next)
-    {
-		head = head->next;
-		delete temp;
-		return;
-	}
+    if (head->next)
+	{
+        head = head->next;
+        delete temp;
+        return;
+    }
 
-	delete temp;
-	head = NULL;
+    delete temp;
+    head = NULL;
 
-	return;
+    return;
 }
 
 template <typename T>
 bool LinkedList<T>::contains(T data)
 {
-	if(!head)
-    {
+    if (!head)
+	{
         return false;
     }
 
-	Node* curr = head;
-	while(curr)
-    {
-		if(curr->data == data)
-        {
+    Node* curr = head;
+    while (curr)
+	{
+        if (curr->data == data)
+		{
             return true;
         }
 
-		curr = curr->next;
-	}
+        curr = curr->next;
+    }
 
     // couldn't find node
-	return false;
+    return false;
 }
 
 template <typename T>
 int LinkedList<T>::getFrequencyOf(T data)
 {
-	int counter = 0;
+    int counter = 0;
 
-	if(!head)
-    {
+    if (!head)
+	{
         return 0;
     }
 
-	if (contains(data) == false)
+    if (contains(data) == false)
 	{
-		return 0;
-	}
+        return 0;
+    }
 
-	Node* curr = head;
-	while(curr)
-    {
-		if(curr->data == data)
-        {
-			// data found, increment counter
+    Node* curr = head;
+    while (curr)
+	{
+        if (curr->data == data)
+		{
+            // data found, increment counter
             counter++;
         }
 
-		curr = curr->next;
-	}
+        curr = curr->next;
+    }
 
-	return counter;
+    return counter;
 }
 
 template <typename T>
 std::vector<T> LinkedList<T>::toVector()
 {
-	std::vector<T> vec;
-	
-	if(!head)
-    {
-		vec.push_back(0);
+    std::vector<T> vec;
+
+    if (!head)
+	{
+        vec.push_back(0);
         return vec;
     }
 
-	Node *curr = head;
+    Node* curr = head;
 
-	while(curr)
-    {
-		vec.push_back(curr->data);
-		curr = curr->next;
-	}
+    while (curr)
+	{
+        vec.push_back(curr->data);
+        curr = curr->next;
+    }
 
-	return vec;
+    return vec;
 }
 
 template <typename T>
 void LinkedList<T>::displayList()
 {
-	if(!head)
-    {
+    if (!head)
+	{
         return;
     }
 
-	Node *curr = head;
+    Node* curr = head;
 
-	cout << "\n--------\n";
+    cout << "\n--------\n";
 
-	while(curr)
-    {
-		cout << curr->data << endl;
+    while (curr)
+	{
+        cout << curr->data << endl;
 
-		curr = curr->next;
-	}
+        curr = curr->next;
+    }
 
-	cout << "List size: " << getCurrentSize() << endl;
-	cout << "--------" << endl;
+    cout << "List size: " << getCurrentSize() << endl;
+    cout << "--------" << endl;
 }
