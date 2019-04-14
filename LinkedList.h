@@ -27,21 +27,24 @@ public:
 	LinkedList(Node *h = 0);
 	~LinkedList();
 
-    // add obj, append to head, prepend to tail
-	void addNode(Node *obj, T data);
-	void addToBack(T data);
-	void addToFront(T data);
+	void clear(); // clear the data structure 
 
-    // pop head / tail nodes
-    T removeFromBack();
-	T removeFromFront();
-    void removeNode(Node *obj);
+	void display(); 
 
-    // display list
-	void display();
-	
-    // searching for object position within list
-    Node *search(T data);
+	int getCurrentSize(); // size or length of the data structure
+	bool isEmpty(); // is the data structure empty
+
+	void add(T data); // add tail node
+	void prepend(T data); // add head node
+
+	void pop(); // remove tail node
+	void shift(); // remove head node
+
+	bool contains(T data); // does the data structure have this data
+	int getFrequencyOf(T data); // how many times is the data in the data structure
+	//vector<T data> toVector() const; // return data in a vector (e.g. to print out)
 };
+
+#include "LinkedList.cpp"
 
 #endif

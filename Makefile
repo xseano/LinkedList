@@ -2,15 +2,32 @@
 # oberoi, sean
 # ssoberoi
 
-linkedList: LinkedList.o Main.o
-	rm -rf linkedList
-	g++ -v -I LinkedList.o Main.o -o ./linkedList
+APPNAME=linkedList
 
-LinkedList.o: LinkedList.cpp LinkedList.h
-	g++ -c LinkedList.cpp
+CXX=g++
+RM=rm -f
 
-Main.o: Main.cpp LinkedList.h
-	g++ -c Main.cpp
+CXXFLAGS=-g -Wall -O -std=c++11
+LDFLAGS=
+LDLIBS=
+
+SRCS=Main.cpp LinkedList.h LinkedList.cpp
+CPP-SRCS=Main.cpp
+OBJS=$(subst .cpp,.o,$(CPP-SRCS))
+
+all: $(APPNAME)
+
+$(APPNAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(APPNAME) $(OBJS) $(LDLIBS)
+
+.depend: $(SRCS)
+	$(RM) ./.depend
+	$(CXX) $(CXXFLAGS) -MM $^>>./.depend;
 
 clean:
-	@rm -f $(PROGRAMS) *.o core
+	$(RM) $(OBJS)
+
+distclean:
+	$(RM) $(APPNAME)
+
+include .depend

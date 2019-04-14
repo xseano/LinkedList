@@ -14,6 +14,43 @@ LinkedList<T>::LinkedList(Node *h)
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
+	clear();
+}
+
+template <typename T>
+bool LinkedList<T>::isEmpty()
+{
+	if (!head)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+template <typename T>
+int LinkedList<T>::getCurrentSize()
+{
+	int counter = 0;
+
+	if(!head)
+    {
+        return 0;
+    }
+
+	Node *curr = head;
+	while(curr)
+    {
+		counter++;
+		curr = curr->next;
+	}
+
+	return counter;
+}
+
+template <typename T>
+void LinkedList<T>::clear()
+{
 	Node *temp;
 	while(head)
     {
@@ -24,48 +61,14 @@ LinkedList<T>::~LinkedList()
 	}
 }
 
-// insert data before obj
 template <typename T>
-void LinkedList<T>::addNode(Node *obj, T data) 
-{ 
-	Node *newNode = new Node(data);
-
-	if(!head)
-    {
-		head = newNode;
-		return;
-	}
-
-	if(obj == head)
-    {
-        // already the head so we just add in front
-		addToFront(data);
-		return;
-	}
-
-    // current head node
-	Node *curr = head;
-
-	while(curr->next)
-    {
-		if(curr->next == obj)
-        {
-			newNode->next = curr->next;
-			curr->next = newNode;
-			return;
-		}
-
-		curr = curr->next;
-	}
-}
-
-template <typename T>
-void LinkedList<T>::addToBack(T data) 
+void LinkedList<T>::add(T data) 
 {
 	Node *newNode = new Node(data);
 
 	if(!head)
     {
+		// no nodes in list, create head
 		head = newNode;
 		return;
 	}
@@ -84,7 +87,7 @@ void LinkedList<T>::addToBack(T data)
 }
 
 template <typename T>
-void LinkedList<T>::addToFront(T data)
+void LinkedList<T>::prepend(T data)
 {
 	Node *newNode = new Node(data);
 
@@ -101,7 +104,7 @@ void LinkedList<T>::addToFront(T data)
 }
 
 template <typename T>
-T LinkedList<T>::removeFromBack() 
+void LinkedList<T>::pop() 
 {
 	Node *curr = head;
 
@@ -109,103 +112,103 @@ T LinkedList<T>::removeFromBack()
     {
 		if(!curr->next)
         {
-			T data (curr->data);
 			delete curr;
 			
             head = NULL;
-			return data;
+			return;
 		}
 
 		else
         {
 			if(!curr->next->next)
             {
-				T data (curr->next->data);
 				curr->next = NULL;
                 
 				delete curr->next;
-				return data;
+				return;
 			}
 		}
 
 		curr = curr->next;
 	}
 
-	return NULL;
+	return;
 }
 
 template <typename T>
-T LinkedList<T>::removeFromFront()
+void LinkedList<T>::shift()
 {
 	if(!head)
     {
-        return NULL;
+        return;
     }
 
 	Node *temp = head;
-	T data (head->data);
 
 	if(head->next)
     {
 		head = head->next;
 		delete temp;
-		return data;
+		return;
 	}
 
 	delete temp;
 	head = NULL;
 
-	return data;
+	return;
 }
 
 template <typename T>
-void LinkedList<T>::removeNode(Node *obj)
-{
-	if(obj == head)
-	{
-		Node *temp = head;
-		head = head->next;
-		
-		delete temp;
-		return;
-	}
-
-	Node *curr = head;
-
-	while(curr)
-	{
-		if(curr->next == obj)
-		{
-			curr->next = obj->next;
-			delete obj;
-		}
-
-		curr = curr->next;
-	}
-}
-
-template <typename T>
-typename LinkedList<T>::Node* LinkedList<T>::search(T data)
+bool LinkedList<T>::contains(T data)
 {
 	if(!head)
     {
-        return NULL;
+        return false;
     }
 
 	Node* curr = head;
-
 	while(curr)
     {
 		if(curr->data == data)
         {
-            return curr;
+            return true;
         }
 
 		curr = curr->next;
 	}
 
     // couldn't find node
-	return NULL;
+	return false;
+}
+
+template <typename T>
+int LinkedList<T>::getFrequencyOf(T data)
+{
+	int counter = 0;
+
+	if(!head)
+    {
+        return 0;
+    }
+
+	if (contains(data) == false)
+	{
+		return 0;
+	}
+
+	Node* curr = head;
+	while(curr)
+    {
+		if(curr->data == data)
+        {
+			// data found, increment counter
+            counter++;
+        }
+
+		curr = curr->next;
+	}
+
+	return counter;
 }
 
 template <typename T>
@@ -217,11 +220,16 @@ void LinkedList<T>::display()
     }
 
 	Node *curr = head;
+
+	cout << "\n--------\n";
+
 	while(curr)
     {
-		cout << curr->data << " " << endl;
+		cout << curr->data << endl;
+
 		curr = curr->next;
 	}
 
-	cout << endl;
+	cout << "List size: " << getCurrentSize() << endl;
+	cout << "--------" << endl;
 }
