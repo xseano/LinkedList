@@ -7,7 +7,7 @@ APPNAME=linkedList
 CXX=g++
 RM=rm -f
 
-CXXFLAGS=-g -Wall -O -std=c++11
+CXXFLAGS=-g -Wall -O -std=c++14
 LDFLAGS=
 LDLIBS=
 
