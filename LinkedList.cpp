@@ -102,7 +102,7 @@ void LinkedList<T>::clear()
  * @param data the data to create the Node<T>
  */
 template <typename T>
-void LinkedList<T>::add(T data)
+void LinkedList<T>::addToBack(T data)
 {
     Node<T>* newNode = new Node<T>(data);
 
@@ -132,7 +132,7 @@ void LinkedList<T>::add(T data)
  * @param data the data to create the Node<T>
  */
 template <typename T>
-void LinkedList<T>::prepend(T data)
+void LinkedList<T>::addToFront(T data)
 {
     Node<T>* newNode = new Node<T>(data);
 
@@ -153,7 +153,7 @@ void LinkedList<T>::prepend(T data)
  *
  */
 template <typename T>
-void LinkedList<T>::pop()
+void LinkedList<T>::removeFromBack()
 {
     Node<T>* curr = head<T>;
 
@@ -188,7 +188,7 @@ void LinkedList<T>::pop()
  * @brief Remove Node<T> from start of list
  */
 template <typename T>
-void LinkedList<T>::shift()
+void LinkedList<T>::removeFromFront()
 {
     if (!head<T>)
 	{

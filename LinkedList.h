@@ -24,11 +24,11 @@ class LinkedList
 
 		bool isEmpty(); // is the data structure empty
 
-		void add(T data); // add tail node
-		void prepend(T data); // add head node
+		void addToBack(T data); // add tail node
+		void addToFront(T data); // add head node
 
-		void pop(); // remove tail node
-		void shift(); // remove head node
+		void removeFromBack(); // remove tail node
+		void removeFromFront(); // remove head node
 
 		bool contains(T data); // does the data structure have this data
 		int getFrequencyOf(T data); // how many times is the data in the data structure

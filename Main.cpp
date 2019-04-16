@@ -13,37 +13,37 @@ int main()
         cout << "\n--------\nNew List\n";
     }
 
-    LL->add(10);
-    LL->add(20);
-    LL->add(30);
-    LL->add(40);
-    LL->add(50);
+    LL->addToBack(10);
+    LL->addToBack(20);
+    LL->addToBack(30);
+    LL->addToBack(40);
+    LL->addToBack(50);
     LL->displayList();
 
     cout << "Adding 60 to the front of the list!";
 
-    LL->prepend(60);
+    LL->addToFront(60);
     LL->displayList();
 
     cout << "Removing the last node...";
 
-    LL->pop();
+    LL->removeFromBack();
     LL->displayList();
 
     cout << "Removing the first node...";
-    LL->shift();
+    LL->removeFromFront();
     LL->displayList();
 
     cout << "Does 60 still exist in the list?" << endl;
 
     if ((LL->contains(60)) == false) {
         cout << "60 doesn't exist, let's add it again!";
-        LL->add(60);
+        LL->addToBack(60);
         LL->displayList();
     }
 
     cout << "Lets add 40 to the front of the list...";
-    LL->prepend(40);
+    LL->addToFront(40);
     LL->displayList();
 
     cout << "Wait.. how many times is 40 in the list though?" << endl;
