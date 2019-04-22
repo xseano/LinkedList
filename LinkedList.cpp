@@ -120,21 +120,23 @@ void LinkedList<T>::addNode(T data)
     if (head<T> == NULL)
     {
         // head is nonexistent, assign the first node to the new data
-        temp->next = temp;
-        head<T> = temp;
-        return; 
+        temp->next = temp; // no head so make new node the head
+        head<T> = temp; // set global head to newly created node
+        
+        return;
     }
 
     // head does exist, set new ptr
     Node<T> *tmp = head<T>;
-    while(tmp->next != head<T>) // while the next ptr doesnt point to head (aka the tail)
+    while(tmp->next != head<T>) // while the next ptr doesnt point to head (aka iterate to tail)
     {
+        // keep iterating until we hit the latest node (the one that points to head)
         tmp = tmp->next;
     }
 
     // set the head node to the new data created
-    tmp->next = temp;
-    temp->next = head<T>;
+    tmp->next = temp; // now that we have the latest node, point it to the newly created node
+    temp->next = head<T>; // since this new node is the tail node, set the next node to head (circular)
 
     return;
 }
@@ -147,35 +149,35 @@ void LinkedList<T>::addNode(T data)
 template <class T>
 void LinkedList<T>::removeNode(T data)
 {
-    Node<T> *tmp = head<T>;
+    Node<T> *tmp = head<T>; // obtain the head node
     Node<T> *prev = NULL;
 
-    while(tmp->next != head<T>)
+    while(tmp->next != head<T>) // while the next ptr doesnt point to the head (aka iterate to tail)
     {
-        if (tmp->data == data)
+        if (tmp->data == data) // if we hit the requested data, break the loop
         {
             break;
         }
 
         prev = tmp;
-        tmp = tmp->next;
+        tmp = tmp->next; // iterate next node until we hit the data
     }
 
-    if(tmp == head<T>)
+    if(tmp == head<T>) // if the data is found to be the head node
     {
-        while(tmp->next != head<T>)
+        while(tmp->next != head<T>) 
         {
-            tmp = tmp->next;
+            tmp = tmp->next; // reassign the temporary node
         }
 
-        tmp->next = head<T>->next;
+        tmp->next = head<T>->next; // since we are going to delete it, store the head's next node so we can reassign after destruction of the Node
 
-        delete head<T>;
-        head<T> = tmp->next;
+        delete head<T>; // delete the head node which matches this data
+        head<T> = tmp->next; // set the NEW head to the next element after the now-deleted node
     }
     else
     {
-        prev->next = tmp->next;
+        prev->next = tmp->next; // store the Node's next ptr
         delete tmp;
     }
 
