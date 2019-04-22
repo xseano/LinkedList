@@ -182,26 +182,6 @@ void LinkedList<T>::removeNode(T data)
     return;
 }
 
-template <class U>
-std::ostream & operator<<(std::ostream & os, const LinkedList<U> & cll)
-{
-    Node<U> *head = cll.head;
-    
-    if(head)
-    {
-        Node<U> *tmp = head;
-        while(tmp->next != head)
-        {
-            os << tmp->data << " ";
-            tmp = tmp->next;
-        }
-
-        os << tmp->data;
-    }
-
-    return os;
-}
-
 /**
  * @brief Converting list Node(s) to vector item(s)
  *

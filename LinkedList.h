@@ -24,9 +24,6 @@ class LinkedList
 
 		void addNode(T data); // add node
 		void removeNode(T data); // remove node
-
-		template <class U>
-		friend std::ostream & operator<<(std::ostream & os, const LinkedList<U> & cll);
 		
 		vector<T> toVector(); // return data in a vector (e.g. to print out)
 };
