@@ -18,20 +18,16 @@ class LinkedList
 
 		void clear(); // clear the data structure
 
-		void displayList(); // display nodes
-
 		int getCurrentSize(); // size or length of the data structure
 
 		bool isEmpty(); // is the data structure empty
 
-		void addToBack(T data); // add tail node
-		void addToFront(T data); // add head node
+		void addNode(T data); // add node
+		void removeNode(T data); // remove node
 
-		void removeFromBack(); // remove tail node
-		void removeFromFront(); // remove head node
-
-		bool contains(T data); // does the data structure have this data
-		int getFrequencyOf(T data); // how many times is the data in the data structure
+		template <class U>
+		friend std::ostream & operator<<(std::ostream & os, const LinkedList<U> & cll);
+		
 		vector<T> toVector(); // return data in a vector (e.g. to print out)
 };
 

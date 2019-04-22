@@ -20,7 +20,7 @@ Node<T>* head = NULL;
 /**
  * @brief List Constructor
  *
- * @param h initial Node<T> if provided
+ * @param h initial Node if provided
  */
 template <typename T>
 LinkedList<T>::LinkedList()
@@ -38,9 +38,9 @@ LinkedList<T>::~LinkedList()
 }
 
 /**
- * @brief Check if the list is empty (has no Node<T>s)
+ * @brief Check if the list is empty (has no Nodes)
  *
- * @return boolean that determines if list has any Node<T>s
+ * @return boolean that determines if list has any Nodes
  */
 template <typename T>
 bool LinkedList<T>::isEmpty()
@@ -56,7 +56,7 @@ bool LinkedList<T>::isEmpty()
 /**
  * @brief Obtain size of the list
  *
- * @return integer that represents amount of Node<T>s in list
+ * @return integer that represents amount of Nodes in list
  */
 template <typename T>
 int LinkedList<T>::getCurrentSize()
@@ -69,7 +69,7 @@ int LinkedList<T>::getCurrentSize()
     }
 
     Node<T>* curr = head<T>;
-    while (curr)
+    while (curr->next != head<T>)
 	{
         counter++;
         curr = curr->next;
@@ -79,207 +79,133 @@ int LinkedList<T>::getCurrentSize()
 }
 
 /**
- * @brief Clear list of Node<T>s
+ * @brief Clear list of Nodes
  *
- * @note deletes each Node<T> and frees respective memory
+ * @note deletes each Node and frees respective memory
  */
 template <typename T>
 void LinkedList<T>::clear()
 {
     Node<T>* temp;
-    while (head<T>)
+    if (!head<T>)
+    {
+        return;
+    }
+
+    Node<T> *tmp = head<T>;
+
+    while (tmp->next != head<T>)
 	{
-        temp = head<T>;
-        head<T> = head<T>->next;
-        // destroy the head<T> of the list, incrementing until no Node<T>s left
+        Node<T> *temp = tmp;
+        tmp = tmp->next;
+        
+        // destroy the head<T> of the list, incrementing until no Nodes left
         delete temp;
     }
-}
 
-/**
- * @brief Add Node<T> to the end of the list
- *
- * @param data the data to create the Node<T>
- */
-template <typename T>
-void LinkedList<T>::addToBack(T data)
-{
-    Node<T>* newNode = new Node<T>(data);
-
-    if (!head<T>)
-	{
-        // no Node<T>s in list, create head<T>
-        head<T> = newNode;
-        return;
-    }
-
-    Node<T>* curr = head<T>;
-
-    while (curr)
-	{
-        if (!curr->next)
-		{
-            curr->next = newNode;
-            return;
-        }
-        curr = curr->next;
-    }
-}
-
-/**
- * @brief Add Node<T> to start of the list
- *
- * @param data the data to create the Node<T>
- */
-template <typename T>
-void LinkedList<T>::addToFront(T data)
-{
-    Node<T>* newNode = new Node<T>(data);
-
-    if (!head<T>)
-	{
-        head<T> = newNode;
-        return;
-    }
-
-    newNode->next = head<T>;
-    head<T> = newNode;
-
-    return;
-}
-
-/**
- * @brief Remove Node<T> from end of list
- *
- */
-template <typename T>
-void LinkedList<T>::removeFromBack()
-{
-    Node<T>* curr = head<T>;
-
-    while (curr)
-	{
-        if (!curr->next)
-		{
-            delete curr;
-
-            head<T> = NULL;
-            return;
-        }
-
-        else
-		{
-            if (!curr->next->next)
-			{
-                curr->next = NULL;
-
-                delete curr->next;
-                return;
-            }
-        }
-
-        curr = curr->next;
-    }
-
-    return;
-}
-
-/**
- * @brief Remove Node<T> from start of list
- */
-template <typename T>
-void LinkedList<T>::removeFromFront()
-{
-    if (!head<T>)
-	{
-        return;
-    }
-
-    Node<T>* temp = head<T>;
-
-    if (head<T>->next)
-	{
-        head<T> = head<T>->next;
-        delete temp;
-        return;
-    }
-
-    delete temp;
+    delete tmp;
     head<T> = NULL;
+}
+
+/**
+ * @brief Add Node of data "T" to end of list
+ *
+ * @param data the data to add to the list
+ */
+template <class T>
+void LinkedList<T>::addNode(T data)
+{
+    Node<T> *temp = new Node<T>(data);
+
+    if (head<T> == NULL)
+    {
+        // head is nonexistent, assign the first node to the new data
+        temp->next = temp;
+        head<T> = temp;
+        return; 
+    }
+
+    // head does exist, set new ptr
+    Node<T> *tmp = head<T>;
+    while(tmp->next != head<T>) // while the next ptr doesnt point to head (aka the tail)
+    {
+        tmp = tmp->next;
+    }
+
+    // set the head node to the new data created
+    tmp->next = temp;
+    temp->next = head<T>;
 
     return;
 }
 
 /**
- * @brief Search for a Node<T> by data
+ * @brief Remove Node of data "T" from end of list
  *
- * @param data The data to search for, in the list of Node<T>s
- * @return boolean that determines if list has the respective data
+ * @param data the data to remove from the list
  */
-
-template <typename T>
-bool LinkedList<T>::contains(T data)
+template <class T>
+void LinkedList<T>::removeNode(T data)
 {
-    if (!head<T>)
-	{
-        return false;
-    }
+    Node<T> *tmp = head<T>;
+    Node<T> *prev = NULL;
 
-    Node<T>* curr = head<T>;
-    while (curr)
-	{
-        if (curr->data == data)
-		{
-            return true;
+    while(tmp->next != head<T>)
+    {
+        if (tmp->data == data)
+        {
+            break;
         }
 
-        curr = curr->next;
+        prev = tmp;
+        tmp = tmp->next;
     }
 
-    // couldn't find Node<T>
-    return false;
+    if(tmp == head<T>)
+    {
+        while(tmp->next != head<T>)
+        {
+            tmp = tmp->next;
+        }
+
+        tmp->next = head<T>->next;
+
+        delete head<T>;
+        head<T> = tmp->next;
+    }
+    else
+    {
+        prev->next = tmp->next;
+        delete tmp;
+    }
+
+    return;
+}
+
+template <class U>
+std::ostream & operator<<(std::ostream & os, const LinkedList<U> & cll)
+{
+    Node<U> *head = cll.head;
+    
+    if(head)
+    {
+        Node<U> *tmp = head;
+        while(tmp->next != head)
+        {
+            os << tmp->data << " ";
+            tmp = tmp->next;
+        }
+
+        os << tmp->data;
+    }
+
+    return os;
 }
 
 /**
- * @brief Occurence(s) of data in the list
+ * @brief Converting list Node(s) to vector item(s)
  *
- * @param h initial Node<T> if provided
- * @return int that describes how many times the data exists in the list
- */
-template <typename T>
-int LinkedList<T>::getFrequencyOf(T data)
-{
-    int counter = 0;
-
-    if (!head<T>)
-	{
-        return 0;
-    }
-
-    if (contains(data) == false)
-	{
-        return 0;
-    }
-
-    Node<T>* curr = head<T>;
-    while (curr)
-	{
-        if (curr->data == data)
-		{
-            // data found, increment counter
-            counter++;
-        }
-
-        curr = curr->next;
-    }
-
-    return counter;
-}
-
-/**
- * @brief Converting list Node<T>(s) to vector item(s)
- *
- * @return vector that represents a vector instance of all Node<T>s in the list
+ * @return vector that represents a vector instance of all Node(s) in the list
  */
 template <typename T>
 std::vector<T> LinkedList<T>::toVector()
@@ -292,8 +218,7 @@ std::vector<T> LinkedList<T>::toVector()
         return vec;
     }
 
-    Node<T>* curr = head<T>;
-
+    Node<T> *curr = head<T>;
     while (curr)
 	{
         vec.push_back(curr->data);
@@ -301,30 +226,4 @@ std::vector<T> LinkedList<T>::toVector()
     }
 
     return vec;
-}
-
-/**
- * @brief Display Node<T>s in the list
- */
-template <typename T>
-void LinkedList<T>::displayList()
-{
-    if (!head<T>)
-	{
-        return;
-    }
-
-    Node<T>* curr = head<T>;
-
-    cout << "\n--------\n";
-
-    while (curr)
-	{
-        cout << curr->data << endl;
-
-        curr = curr->next;
-    }
-
-    cout << "List size: " << getCurrentSize() << endl;
-    cout << "--------" << endl;
 }

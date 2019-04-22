@@ -4,6 +4,22 @@
 
 #include "LinkedList.h"
 
+/**
+ * @brief Display Nodes in the list
+ */
+void displayList(std::vector<int> list)
+{
+    cout << "\n--------\n";
+
+    for (int i = 0; i < list.size(); i++)
+    {
+        cout << list[i] << endl;
+    }
+
+    cout << "List size: " << list.size() << endl;
+    cout << "--------" << endl;
+}
+
 int main()
 {
     LinkedList<int>* LL = new LinkedList<int>();
@@ -13,43 +29,14 @@ int main()
         cout << "\n--------\nNew List\n";
     }
 
-    LL->addToBack(10);
-    LL->addToBack(20);
-    LL->addToBack(30);
-    LL->addToBack(40);
-    LL->addToBack(50);
-    LL->displayList();
+    LL->addNode(10);
+    LL->addNode(20);
+    LL->addNode(30);
+    LL->addNode(40);
+    LL->addNode(50);
 
-    cout << "Adding 60 to the front of the list!";
-
-    LL->addToFront(60);
-    LL->displayList();
-
-    cout << "Removing the last node...";
-
-    LL->removeFromBack();
-    LL->displayList();
-
-    cout << "Removing the first node...";
-    LL->removeFromFront();
-    LL->displayList();
-
-    cout << "Does 60 still exist in the list?" << endl;
-
-    if ((LL->contains(60)) == false) {
-        cout << "60 doesn't exist, let's add it again!";
-        LL->addToBack(60);
-        LL->displayList();
-    }
-
-    cout << "Lets add 40 to the front of the list...";
-    LL->addToFront(40);
-    LL->displayList();
-
-    cout << "Wait.. how many times is 40 in the list though?" << endl;
-    cout << "Looks like 40 has " << LL->getFrequencyOf(40) << " occurences in the list!" << endl;
-
-    std::vector<int> list = LL->toVector();
+    std::vector<int> vec = LL->toVector();
+    displayList(vec);
 
     return 0;
 }
