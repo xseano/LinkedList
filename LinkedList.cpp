@@ -114,19 +114,6 @@ int LinkedList<T>::getCurrentSize()
 
     }
 
-//    if (curr->next == head<T>)
-//    {
-//        counter = 1;
-//    }
-//    else
-//    {
-//        while (curr->next != head<T>)
-//        {
-//            counter++;
-//            curr = curr->next;
-//        }
-//    }
-
     return counter;
 }
 
@@ -157,6 +144,41 @@ void LinkedList<T>::clear()
 
     delete tmp;
     head<T> = NULL;
+}
+
+/**
+ * @brief Occurrences of data in the list
+ *
+ * @param data the data to search for
+ * @return int that describes how many times the data exists in the list
+ */
+template <typename T>
+int LinkedList<T>::getFrequencyOf(T data)
+{
+    int counter = 0;
+
+    if (!head<T>)
+    {
+        // empty list
+        return 0;
+    }
+
+    Node<T> *curr = head<T>;
+
+    for (int i = 0; i <= getCurrentSize(); i++)
+    {
+        if (i != getCurrentSize())
+        {
+            if (curr->data == data)
+            {
+                counter++;
+            }
+
+            curr = curr->next;
+        }
+    }
+
+    return counter;
 }
 
 /**

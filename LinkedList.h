@@ -18,10 +18,11 @@ class LinkedList
 
 		void clear(); // clear the data structure
 
-		int getCurrentSize(); // size or length of the data structure
+		int getCurrentSize(); // size or length of Nodes in the list
+		int getFrequencyOf(T data); // how many Nodes contain specified data
 
 		bool isEmpty(); // is the data structure empty
-		bool contains(T data); // check if Node with data<T> exists
+		bool contains(T data); // check if Node with data exists
 
 		void addNode(T data); // add node
 		void removeNode(T data); // remove node
