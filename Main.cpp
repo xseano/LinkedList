@@ -35,6 +35,8 @@ int main()
     LL->addNode(40);
     LL->addNode(50);
 
+    cout << LL->getCurrentSize() << endl;
+
     displayList(LL->toVector());
 
     if (!(LL->contains(60)))
@@ -44,14 +46,20 @@ int main()
         displayList(LL->toVector());
     }
 
+    LL->getCurrentSize();
+
     cout << "Lets remove 30 and 40!";
     LL->removeNode(30);
     LL->removeNode(40);
     displayList(LL->toVector());
 
+    LL->getCurrentSize();
+
     cout << "Lets add another 20...";
     LL->addNode(20);
     displayList(LL->toVector());
+
+    LL->getCurrentSize();
 
     return 0;
 }

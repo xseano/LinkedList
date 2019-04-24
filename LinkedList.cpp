@@ -100,18 +100,32 @@ int LinkedList<T>::getCurrentSize()
 
     Node<T> *curr = head<T>;
 
-    if (curr->next == head<T>)
+    while(curr->next)
     {
-        counter = 1;
-    }
-    else
-    {
-        while (curr->next != head<T>)
+        ++counter;
+
+        curr = curr->next;
+
+        if (curr->next == head<T>)
         {
-            counter++;
-            curr = curr->next;
+            ++counter;
+            return counter;
         }
+
     }
+
+//    if (curr->next == head<T>)
+//    {
+//        counter = 1;
+//    }
+//    else
+//    {
+//        while (curr->next != head<T>)
+//        {
+//            counter++;
+//            curr = curr->next;
+//        }
+//    }
 
     return counter;
 }
