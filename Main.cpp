@@ -35,7 +35,9 @@ int main()
     LL->addNode(40);
     LL->addNode(50);
 
-    cout << LL->getCurrentSize() << endl;
+    displayList(LL->toVector());
+
+    /*
 
     displayList(LL->toVector());
 
@@ -60,6 +62,7 @@ int main()
     displayList(LL->toVector());
 
     LL->getCurrentSize();
+    */
 
     return 0;
 }

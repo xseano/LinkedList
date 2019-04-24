@@ -250,13 +250,10 @@ std::vector<T> LinkedList<T>::toVector()
 	{
         // empty list
     }
-    else if (getCurrentSize() == 1)
+
+    for (int i = 0; i <= getCurrentSize(); i++)
     {
-        vec.push_back(curr->data);
-    }
-    else
-    {
-        while (curr->next != head<T>)
+        if (i != getCurrentSize())
         {
             vec.push_back(curr->data);
             curr = curr->next;
