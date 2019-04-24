@@ -168,13 +168,12 @@ void LinkedList<T>::addNode(T data)
     Node<T> *tmp = head<T>;
     while(tmp->next != head<T>) // while the next ptr doesnt point to head (aka iterate to tail)
     {
-        // keep iterating until we hit the latest node (the one that points to head)
+        // keep iterating until we hit the node before the last node (the one that points to head)
         tmp = tmp->next;
     }
 
-    // set the head node to the new data created
-    tmp->next = temp; // now that we have the latest node, point it to the newly created node
-    temp->next = head<T>; // since this new node is the tail node, set the next node to head (circular)
+    tmp->next = temp; // from the second to last node, obtain last node and point to new node as new tail node
+    temp->next = head<T>; // set the new node's next ptr to head since it is the tail node now
 
     return;
 }
