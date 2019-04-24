@@ -21,6 +21,7 @@ class LinkedList
 		int getCurrentSize(); // size or length of the data structure
 
 		bool isEmpty(); // is the data structure empty
+		bool contains(T data); // check if Node with data<T> exists
 
 		void addNode(T data); // add node
 		void removeNode(T data); // remove node

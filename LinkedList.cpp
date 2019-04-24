@@ -11,11 +11,11 @@ struct Node
 
 	// initialization list
 	Node() {}
-	Node(T d, Node<T>* n = 0) : data(d), next(n) {}
+	Node(T d, Node<T> *n = 0) : data(d), next(n) {}
 };
 
 template <typename T>
-Node<T>* head = NULL;
+Node<T> *head = NULL;
 
 /**
  * @brief List Constructor
@@ -54,6 +54,36 @@ bool LinkedList<T>::isEmpty()
 }
 
 /**
+ * @brief Search for a Node by data
+ *
+ * @param data The data to search for, in the list of Nodes
+ * @return boolean that determines if list has the respective data
+ */
+
+template <typename T>
+bool LinkedList<T>::contains(T data)
+{
+    if (!head<T>)
+    {
+        return false;
+    }
+
+    Node<T> *curr = head<T>;
+    while (curr->next != head<T>)
+    {
+        if (curr->data == data)
+        {
+            return true;
+        }
+
+        curr = curr->next;
+    }
+
+    // couldn't find Node<T>
+    return false;
+}
+
+/**
  * @brief Obtain size of the list
  *
  * @return integer that represents amount of Nodes in list
@@ -68,7 +98,7 @@ int LinkedList<T>::getCurrentSize()
         return 0;
     }
 
-    Node<T>* curr = head<T>;
+    Node<T> *curr = head<T>;
 
     if (curr->next == head<T>)
     {
@@ -94,7 +124,7 @@ int LinkedList<T>::getCurrentSize()
 template <typename T>
 void LinkedList<T>::clear()
 {
-    Node<T>* temp;
+    Node<T> *temp;
     if (!head<T>)
     {
         return;

@@ -1,3 +1,0 @@
-Main.o: Main.cpp LinkedList.h LinkedList.cpp
-LinkedList.o: LinkedList.h LinkedList.cpp
-LinkedList.o: LinkedList.cpp

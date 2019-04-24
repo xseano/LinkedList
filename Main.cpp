@@ -34,10 +34,19 @@ int main()
     LL->addNode(30);
     LL->addNode(40);
     LL->addNode(50);
+    LL->addNode(60);
 
     displayList(LL->toVector());
 
-    LL->removeNode(20);
+    if (!(LL->contains(60)))
+    {
+        cout << "60 doesn't exist, let's add it!";
+        LL->addNode(60);
+    }
+
+    displayList(LL->toVector());
+
+    LL->removeNode(30);
     LL->removeNode(40);
 
     displayList(LL->toVector());

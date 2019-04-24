@@ -26,8 +26,7 @@ $(APPNAME): $(OBJS)
 
 clean:
 	$(RM) $(OBJS)
-
-distclean:
 	$(RM) $(APPNAME)
+	$(RM) ./.depend
 
 include .depend
