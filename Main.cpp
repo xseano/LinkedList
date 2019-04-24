@@ -24,7 +24,7 @@ int main()
 {
     LinkedList<int>* LL = new LinkedList<int>();
 
-    if ((LL->isEmpty()) == true)
+    if ((LL->isEmpty()))
 	{
         cout << "\n--------\nNew List\n";
     }
@@ -34,7 +34,6 @@ int main()
     LL->addNode(30);
     LL->addNode(40);
     LL->addNode(50);
-    LL->addNode(60);
 
     displayList(LL->toVector());
 
@@ -42,13 +41,16 @@ int main()
     {
         cout << "60 doesn't exist, let's add it!";
         LL->addNode(60);
+        displayList(LL->toVector());
     }
 
-    displayList(LL->toVector());
-
+    cout << "Lets remove 30 and 40!";
     LL->removeNode(30);
     LL->removeNode(40);
+    displayList(LL->toVector());
 
+    cout << "Lets add another 20...";
+    LL->addNode(20);
     displayList(LL->toVector());
 
     return 0;
