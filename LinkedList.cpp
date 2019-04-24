@@ -69,10 +69,18 @@ int LinkedList<T>::getCurrentSize()
     }
 
     Node<T>* curr = head<T>;
-    while (curr->next != head<T>)
-	{
-        counter++;
-        curr = curr->next;
+
+    if (curr->next == head<T>)
+    {
+        counter = 1;
+    }
+    else
+    {
+        while (curr->next != head<T>)
+        {
+            counter++;
+            curr = curr->next;
+        }
     }
 
     return counter;
@@ -115,14 +123,14 @@ void LinkedList<T>::clear()
 template <class T>
 void LinkedList<T>::addNode(T data)
 {
-    Node<T> *temp = new Node<T>(data);
+    Node<T> *temp = new Node<T>(data); // create a temp Node
 
     if (head<T> == NULL)
     {
         // head is nonexistent, assign the first node to the new data
         temp->next = temp; // no head so make new node the head
         head<T> = temp; // set global head to newly created node
-        
+
         return;
     }
 
@@ -193,18 +201,23 @@ template <typename T>
 std::vector<T> LinkedList<T>::toVector()
 {
     std::vector<T> vec;
+    Node<T> *curr = head<T>;
 
     if (!head<T>)
 	{
-        vec.push_back(0);
-        return vec;
+        // empty list
     }
-
-    Node<T> *curr = head<T>;
-    while (curr)
-	{
+    else if (getCurrentSize() == 1)
+    {
         vec.push_back(curr->data);
-        curr = curr->next;
+    }
+    else
+    {
+        while (curr->next != head<T>)
+        {
+            vec.push_back(curr->data);
+            curr = curr->next;
+        }
     }
 
     return vec;

@@ -35,8 +35,12 @@ int main()
     LL->addNode(40);
     LL->addNode(50);
 
-    std::vector<int> vec = LL->toVector();
-    displayList(vec);
+    displayList(LL->toVector());
+
+    LL->removeNode(20);
+    LL->removeNode(40);
+
+    displayList(LL->toVector());
 
     return 0;
 }
