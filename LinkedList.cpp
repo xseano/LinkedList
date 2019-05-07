@@ -8,10 +8,11 @@ struct Node
 	// Data and next position
 	T data;
 	Node* next;
+	Node* prev;
 
 	// initialization list
 	Node() {}
-	Node(T d, Node<T> *n = 0) : data(d), next(n) {}
+	Node(T d, Node<T> *n = 0, Node<T> *p = 0) : data(d), next(n), prev(p) {}
 };
 
 template <typename T>
@@ -195,6 +196,7 @@ void LinkedList<T>::addNode(T data)
     {
         // head is nonexistent, assign the first node to the new data
         temp->next = temp; // no head so make new node the head
+        temp->prev = temp; // no head initially so the previous is the first node (circular)
         head<T> = temp; // set global head to newly created node
 
         return;
@@ -210,6 +212,8 @@ void LinkedList<T>::addNode(T data)
 
     tmp->next = temp; // from the second to last node, obtain last node and point to new node as new tail node
     temp->next = head<T>; // set the new node's next ptr to head since it is the tail node now
+    temp->prev = tmp; // set the new node's prev to ptr of node before it
+    temp->next->prev = temp; // temp->next aka head prev pointer set to latest node (circular)
 
     return;
 }
@@ -255,6 +259,31 @@ void LinkedList<T>::removeNode(T data)
     }
 
     return;
+}
+
+/**
+ * @brief Converting list Node(s) to vector item(s)
+ *
+ * @return vector that represents a vector instance of all Node(s) in the list
+ */
+template <typename T>
+void LinkedList<T>::showLinkage()
+{
+    Node<T> *curr = head<T>;
+
+    if (!head<T>)
+    {
+        // empty list
+    }
+
+    for (int i = 0; i <= getCurrentSize(); i++)
+    {
+        if (i != getCurrentSize())
+        {
+            std::cout << curr->prev->data << " <- " << curr->data << " -> " << curr->next->data << std::endl;
+            curr = curr->next;
+        }
+    }
 }
 
 /**

@@ -17,6 +17,7 @@ class LinkedList
 		~LinkedList();
 
 		void clear(); // clear the data structure
+		void showLinkage(); // display the structure of the node pointers
 
 		int getCurrentSize(); // size or length of Nodes in the list
 		int getFrequencyOf(T data); // how many Nodes contain specified data
