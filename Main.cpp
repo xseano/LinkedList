@@ -35,16 +35,7 @@ int main()
     LL->addNode(40);
     LL->addNode(50);
 
-    LL->showLinkage();
-
-    std::cout << "------" << std::endl;
-
-    LL->removeNode(30);
-    LL->removeNode(40);
-
-    LL->showLinkage();
-
-    /*displayList(LL->toVector());
+    displayList(LL->toVector());
 
     if (!(LL->contains(60)))
     {
@@ -65,7 +56,6 @@ int main()
     int demoVal = 20;
     cout << "Wait.. how many times is " << demoVal << " in the list though?" << endl;
     cout << "Looks like " << demoVal << " has " << LL->getFrequencyOf(demoVal) << " occurrences in the list!" << endl;
-     */
 
     return 0;
 }
