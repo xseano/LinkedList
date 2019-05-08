@@ -316,3 +316,31 @@ std::vector<T> LinkedList<T>::toVector()
 
     return vec;
 }
+
+/**
+ * @brief Converting reversed list Node(s) to vector item(s)
+ *
+ * @return vector that represents a vector instance of all Node(s) in the list
+ */
+template <typename T>
+std::vector<T> LinkedList<T>::reverseVector()
+{
+    std::vector<T> vec;
+    Node<T> *curr = head<T>->prev;
+
+    if (!head<T>)
+    {
+        // empty list
+    }
+
+    for (int i = 0; i <= getCurrentSize(); i++)
+    {
+        if (i != getCurrentSize())
+        {
+            vec.push_back(curr->data);
+            curr = curr->prev;
+        }
+    }
+
+    return vec;
+}

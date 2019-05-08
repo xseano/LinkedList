@@ -37,6 +37,9 @@ int main()
 
     displayList(LL->toVector());
 
+    cout << "Now let's reverse the list..." << endl;
+    displayList(LL->reverseVector());
+
     if (!(LL->contains(60)))
     {
         cout << "60 doesn't exist, let's add it!";
@@ -48,6 +51,9 @@ int main()
     LL->removeNode(30);
     LL->removeNode(40);
     displayList(LL->toVector());
+
+    cout << "Let's reverse the list again!" << endl;
+    displayList(LL->reverseVector());
 
     cout << "Lets add another 20...";
     LL->addNode(20);

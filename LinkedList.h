@@ -27,8 +27,9 @@ class LinkedList
 
 		void addNode(T data); // add node
 		void removeNode(T data); // remove node
-		
+
 		vector<T> toVector(); // return data in a vector (e.g. to print out)
+		vector<T> reverseVector(); // return reversed data in a vector
 };
 
 #include "LinkedList.cpp"
