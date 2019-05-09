@@ -226,6 +226,12 @@ void LinkedList<T>::addNode(T data)
 template <class T>
 void LinkedList<T>::removeNode(T data)
 {
+    if (head<T> == NULL)
+    {
+        // check to make sure there is actual data in the list
+        return;
+    }
+
     Node<T> *tmp = head<T>; // obtain the head node
     Node<T> *prev = NULL;
 
@@ -238,6 +244,12 @@ void LinkedList<T>::removeNode(T data)
 
         prev = tmp;
         tmp = tmp->next; // iterate next node until we hit the data
+    }
+
+    if(tmp->data != data)
+    {
+        // if the data doesn't exist in the list, this will happen
+        return;
     }
 
     if(tmp == head<T>) // if the data is found to be the head node

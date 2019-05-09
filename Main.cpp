@@ -37,6 +37,14 @@ int main()
 
     displayList(LL->toVector());
 
+    LL->removeNode(60);
+
+    displayList(LL->toVector());
+
+    /*
+
+    displayList(LL->toVector());
+
     cout << "Now let's reverse the list..." << endl;
     displayList(LL->reverseVector());
 
@@ -62,6 +70,7 @@ int main()
     int demoVal = 20;
     cout << "Wait.. how many times is " << demoVal << " in the list though?" << endl;
     cout << "Looks like " << demoVal << " has " << LL->getFrequencyOf(demoVal) << " occurrences in the list!" << endl;
+     */
 
     return 0;
 }
