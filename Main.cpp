@@ -7,7 +7,7 @@
 /**
  * @brief Display Nodes in the list
  */
-void displayList(std::vector<int> list)
+void displayList(std::vector<std::string> list)
 {
     cout << "\n--------\n";
 
@@ -22,55 +22,47 @@ void displayList(std::vector<int> list)
 
 int main()
 {
-    LinkedList<int>* LL = new LinkedList<int>();
+    LinkedList<std::string>* LL = new LinkedList<std::string>();
 
     if ((LL->isEmpty()))
 	{
         cout << "\n--------\nNew List\n";
     }
 
-    LL->addNode(10);
-    LL->addNode(20);
-    LL->addNode(30);
-    LL->addNode(40);
-    LL->addNode(50);
-
-    displayList(LL->toVector());
-
-    LL->removeNode(60);
-
-    displayList(LL->toVector());
-
-    /*
+    LL->addNode("one");
+    LL->addNode("two");
+    LL->addNode("three");
+    LL->addNode("four");
+    LL->addNode("five");
 
     displayList(LL->toVector());
 
     cout << "Now let's reverse the list..." << endl;
     displayList(LL->reverseVector());
 
-    if (!(LL->contains(60)))
+    if (!(LL->contains("six")))
     {
-        cout << "60 doesn't exist, let's add it!";
-        LL->addNode(60);
+        cout << "6 doesn't exist, let's add it!";
+        LL->addNode("six");
         displayList(LL->toVector());
     }
 
-    cout << "Lets remove 30 and 40!";
-    LL->removeNode(30);
-    LL->removeNode(40);
+    cout << "Lets remove 3 and 4!";
+    LL->removeNode("three");
+    LL->removeNode("four");
     displayList(LL->toVector());
 
     cout << "Let's reverse the list again!" << endl;
     displayList(LL->reverseVector());
 
-    cout << "Lets add another 20...";
-    LL->addNode(20);
+    cout << "Lets add another 2...";
+    std::string demoVal = "two";
+
+    LL->addNode(demoVal);
     displayList(LL->toVector());
 
-    int demoVal = 20;
     cout << "Wait.. how many times is " << demoVal << " in the list though?" << endl;
     cout << "Looks like " << demoVal << " has " << LL->getFrequencyOf(demoVal) << " occurrences in the list!" << endl;
-     */
-
+    
     return 0;
 }

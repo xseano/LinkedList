@@ -57,12 +57,12 @@ bool LinkedList<T>::isEmpty()
 /**
  * @brief Search for a Node by data
  *
- * @param data The data to search for, in the list of Nodes
+ * @param targetData The data to search for, in the list of Nodes
  * @return boolean that determines if list has the respective data
  */
 
 template <typename T>
-bool LinkedList<T>::contains(T data)
+bool LinkedList<T>::contains(T targetData)
 {
     if (!head<T>)
     {
@@ -72,7 +72,7 @@ bool LinkedList<T>::contains(T data)
     Node<T> *curr = head<T>;
     while (curr->next != head<T>)
     {
-        if (curr->data == data)
+        if (curr->data == targetData)
         {
             return true;
         }
@@ -150,11 +150,11 @@ void LinkedList<T>::clear()
 /**
  * @brief Occurrences of data in the list
  *
- * @param data the data to search for
+ * @param targetData the data to search for
  * @return int that describes how many times the data exists in the list
  */
 template <typename T>
-int LinkedList<T>::getFrequencyOf(T data)
+int LinkedList<T>::getFrequencyOf(T targetData)
 {
     int counter = 0;
 
@@ -170,7 +170,7 @@ int LinkedList<T>::getFrequencyOf(T data)
     {
         if (i != getCurrentSize())
         {
-            if (curr->data == data)
+            if (curr->data == targetData)
             {
                 counter++;
             }
@@ -185,12 +185,12 @@ int LinkedList<T>::getFrequencyOf(T data)
 /**
  * @brief Add Node of data "T" to end of list
  *
- * @param data the data to add to the list
+ * @param targetData the data to add to the list
  */
 template <class T>
-void LinkedList<T>::addNode(T data)
+void LinkedList<T>::addNode(T targetData)
 {
-    Node<T> *temp = new Node<T>(data); // create a temp Node
+    Node<T> *temp = new Node<T>(targetData); // create a temp Node
 
     if (head<T> == NULL)
     {
@@ -221,10 +221,10 @@ void LinkedList<T>::addNode(T data)
 /**
  * @brief Remove Node of data "T" from end of list
  *
- * @param data the data to remove from the list
+ * @param targetData the data to remove from the list
  */
 template <class T>
-void LinkedList<T>::removeNode(T data)
+void LinkedList<T>::removeNode(T targetData)
 {
     if (head<T> == NULL)
     {
@@ -237,7 +237,7 @@ void LinkedList<T>::removeNode(T data)
 
     while(tmp->next != head<T>) // while the next ptr doesnt point to the head (aka iterate to tail)
     {
-        if (tmp->data == data) // if we hit the requested data, break the loop
+        if (tmp->data == targetData) // if we hit the requested data, break the loop
         {
             break;
         }
@@ -246,7 +246,7 @@ void LinkedList<T>::removeNode(T data)
         tmp = tmp->next; // iterate next node until we hit the data
     }
 
-    if(tmp->data != data)
+    if(tmp->data != targetData)
     {
         // if the data doesn't exist in the list, this will happen
         return;
