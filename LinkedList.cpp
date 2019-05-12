@@ -5,14 +5,14 @@
 template <typename T>
 struct Node
 {
-	// Data and next position
-	T data;
-	Node* next;
-	Node* prev;
+    // Data and next position
+    T data;
+    Node* next;
+    Node* prev;
 
-	// initialization list
-	Node() {}
-	Node(T d, Node<T> *n = 0, Node<T> *p = 0) : data(d), next(n), prev(p) {}
+    // initialization list
+    Node() {}
+    Node(T d, Node<T> *n = 0, Node<T> *p = 0) : data(d), next(n), prev(p) {}
 };
 
 template <typename T>
@@ -94,8 +94,8 @@ int LinkedList<T>::getCurrentSize()
 {
     int counter = 0;
 
-    if (!head<T>)
-	{
+    if(!head<T>)
+    {
         return 0;
     }
 
