@@ -4,10 +4,12 @@
 
 #include "LinkedList.h"
 
+typedef std::string dataType;
+
 /**
  * @brief Display Nodes in the list
  */
-void displayList(std::vector<std::string> list)
+void displayList(std::vector<dataType> list)
 {
     cout << "\n--------\n";
 
@@ -22,7 +24,7 @@ void displayList(std::vector<std::string> list)
 
 int main()
 {
-    LinkedList<std::string>* LL = new LinkedList<std::string>();
+    LinkedList<dataType>* LL = new LinkedList<dataType>();
 
     if ((LL->isEmpty()))
 	{
@@ -56,13 +58,13 @@ int main()
     displayList(LL->reverseVector());
 
     cout << "Lets add another 2...";
-    std::string demoVal = "two";
+    dataType demoVal = "two";
 
     LL->addNode(demoVal);
     displayList(LL->toVector());
 
     cout << "Wait.. how many times is " << demoVal << " in the list though?" << endl;
     cout << "Looks like " << demoVal << " has " << LL->getFrequencyOf(demoVal) << " occurrences in the list!" << endl;
-    
+
     return 0;
 }

@@ -213,7 +213,7 @@ void LinkedList<T>::addNode(T targetData)
     tmp->next = temp; // from the second to last node, obtain last node and point to new node as new tail node
     temp->next = head<T>; // set the new node's next ptr to head since it is the tail node now
     temp->prev = tmp; // set the new node's prev to ptr of node before it
-    temp->next->prev = temp; // temp->next aka head prev pointer set to latest node (circular)
+    head<T>->prev = temp; // head prev point set to latest node (circular)
 
     return;
 }
