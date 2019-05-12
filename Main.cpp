@@ -4,7 +4,7 @@
 
 #include "LinkedList.h"
 
-typedef std::string dataType;
+typedef float dataType;
 
 /**
  * @brief Display Nodes in the list
@@ -28,37 +28,37 @@ int main()
 
     if ((LL->isEmpty()))
 	{
-        cout << "\n--------\nNew List\n";
+        cout << "\n--------\nNew List";
     }
 
-    LL->addNode("one");
-    LL->addNode("two");
-    LL->addNode("three");
-    LL->addNode("four");
-    LL->addNode("five");
+    LL->addNode(1.87);
+    LL->addNode(2.52);
+    LL->addNode(2.94);
+    LL->addNode(3.17);
+    LL->addNode(3.64);
 
     displayList(LL->toVector());
 
-    cout << "Now let's reverse the list..." << endl;
+    cout << "Now let's reverse the list...";
     displayList(LL->reverseVector());
 
-    if (!(LL->contains("six")))
+    if (!(LL->contains(4.39)))
     {
-        cout << "6 doesn't exist, let's add it!";
-        LL->addNode("six");
+        cout << "4.39 doesn't exist, let's add it!";
+        LL->addNode(4.39);
         displayList(LL->toVector());
     }
 
-    cout << "Lets remove 3 and 4!";
-    LL->removeNode("three");
-    LL->removeNode("four");
+    cout << "Lets remove 2.94 and 3.17!";
+    LL->removeNode(2.94);
+    LL->removeNode(3.17);
     displayList(LL->toVector());
 
-    cout << "Let's reverse the list again!" << endl;
+    cout << "Let's reverse the list again!";
     displayList(LL->reverseVector());
 
-    cout << "Lets add another 2...";
-    dataType demoVal = "two";
+    cout << "Lets add another 1.87...";
+    dataType demoVal = 1.87;
 
     LL->addNode(demoVal);
     displayList(LL->toVector());
